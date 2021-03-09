@@ -60,17 +60,20 @@ def cancel_corona_add( driver ):
 ##########################################################
 
 def accept_banner( driver ):
-    element = WebDriverWait(driver, 40).until(
-        EC.presence_of_element_located((By.ID, "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"))
-        )
+
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='cookiebar-dm-overlay']" )
+    d3 = d2.find_element_by_css_selector( "div[data-dmid='cookiebar']" )
+    d4 = d3.find_element_by_css_selector( "button[data-dmid='cookiebar-ok']" )
+
     print( "DEBUG: found banner" )
 
     helpers.sleep( 5 )
 
-    print( "clicking" )
+    print( "DEBUG: clicking" )
 
-    terms_button = driver.find_element_by_id( 'CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll' )
-    terms_button.click()
+    d4.click()
 
 ##########################################################
 
