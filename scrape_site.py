@@ -140,11 +140,11 @@ def select_shop_by_post_code( driver ):
 
     print( "DEBUG: found shop selection button" )
 
-    helpers.sleep( 5 )
-
     print( "DEBUG: clicking" )
 
     d7.click()
+
+    helpers.sleep( 5 )
 
     enter_post_code( driver )
 
