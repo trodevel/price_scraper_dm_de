@@ -71,6 +71,32 @@ def accept_banner( driver ):
 
 ##########################################################
 
+def enter_post_code( driver ):
+
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
+    d3 = d2.find_element_by_xpath( "//div" )
+    d4 = d3.find_element_by_xpath( "//div" )
+    d5 = d4.find_element_by_css_selector( "div[data-dmid='storefinder-wrapper']" )
+    d6 = d5.find_element_by_css_selector( "div[data-dmid='store-list-overlay-wrapper']" )
+    d7 = d6.find_element_by_xpath( "//div" )
+    d8 = d7.find_element_by_css_selector( "div[data-dmid='search-wrapper']" )
+    d9 = d8.find_element_by_xpath( "//form" )
+    d10 = d9.find_element_by_xpath( "//div" )
+    d11 = d10.find_element_by_css_selector( "div[data-dmid='store-search-container']" )
+    d12 = d11.find_element_by_css_selector( "input[data-dmid='store-search-field']" )
+
+    #d7 = d6.find_element_by_css_selector( "a[title='dm-Märkte']" )
+
+    print( "DEBUG: found shop selection button" )
+
+    print( "INFO: sending postcode {}".format( config.PLZ ) )
+
+    d12.send_keys( config.PLZ )
+
+##########################################################
+
 def select_shop_by_post_code( driver ):
 
     d0 = driver.find_element_by_id( "app" )
@@ -89,6 +115,8 @@ def select_shop_by_post_code( driver ):
     print( "DEBUG: clicking" )
 
     d7.click()
+
+    enter_post_code( driver )
 
     exit()
 
