@@ -24,6 +24,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.expected_conditions import staleness_of
+from selenium.webdriver.common.keys import Keys
 
 import config         # DRIVER_PATH
 import helpers        # find_element_by_tag_and_class_name
@@ -94,6 +95,10 @@ def enter_post_code( driver ):
     print( "INFO: sending postcode {}".format( config.PLZ ) )
 
     d12.send_keys( config.PLZ )
+
+    helpers.sleep(2)
+
+    d12.send_keys( Keys.RETURN )
 
 ##########################################################
 
