@@ -102,6 +102,31 @@ def enter_post_code( driver ):
 
 ##########################################################
 
+def select_found_shop( driver ):
+
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
+    d3 = d2.find_element_by_xpath( "//div" )
+    d4 = d3.find_element_by_xpath( "//div" )
+    d5 = d4.find_element_by_css_selector( "div[data-dmid='storefinder-wrapper']" )
+    d6 = d5.find_element_by_css_selector( "div[data-dmid='store-list-overlay-wrapper']" )
+    d7 = d6.find_element_by_xpath( "//span" )
+    d8 = d7.find_element_by_css_selector( "div[data-dmid='store-list-container']" )
+    d9 = d8.find_element_by_css_selector( "div[data-dmid='store-list']" )
+    d10 = d9.find_element_by_css_selector( "div[data-dmid='store-teaser']" )
+    d11 = d10.find_element_by_css_selector( "div[data-dmid='store-teaser-info-container']" )
+    d12 = d11.find_element_by_css_selector( "div[data-dmid='store-teaser-button-container']" )
+    d13 = d12.find_element_by_css_selector( "button[data-dmid='store-teaser-button']" )
+
+    print( "DEBUG: selecting shop" )
+
+    d13.click()
+
+    helpers.sleep(2)
+
+##########################################################
+
 def select_shop_by_post_code( driver ):
 
     d0 = driver.find_element_by_id( "app" )
@@ -122,6 +147,8 @@ def select_shop_by_post_code( driver ):
     d7.click()
 
     enter_post_code( driver )
+
+    select_found_shop( driver )
 
     exit()
 
