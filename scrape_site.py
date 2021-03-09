@@ -38,11 +38,9 @@ DEBUG_CATEGORY = False
 
 def cancel_corona_add( driver ):
 
-    d0 = driver.find_element_by_css_selector( "div[data-dmid='personalization-layer-wrapper']" )
-
-#    element = WebDriverWait(driver, 40).until(
-#        EC.presence_of_element_located((By.ID, "CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"))
-#        )
+    d0 = WebDriverWait(driver, 15).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-dmid='personalization-layer-wrapper']"))
+        )
 
     d1 = d0.find_element_by_css_selector( "div[data-dmid='layer-container']" )
     d2 = d1.find_element_by_css_selector( "div[data-dmid='layer-body']" )
