@@ -111,8 +111,11 @@ def select_found_shop( driver ):
     d4 = d3.find_element_by_xpath( "//div" )
     d5 = d4.find_element_by_css_selector( "div[data-dmid='storefinder-wrapper']" )
     d6 = d5.find_element_by_css_selector( "div[data-dmid='store-list-overlay-wrapper']" )
-    d7 = d6.find_element_by_xpath( "//span" )
-    d8 = d7.find_element_by_css_selector( "div[data-dmid='store-list-container']" )
+
+    d8 = WebDriverWait( d6, 15 ).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "div[data-dmid='store-list-container']"))
+        )
+
     d9 = d8.find_element_by_css_selector( "div[data-dmid='store-list']" )
     d10 = d9.find_element_by_css_selector( "div[data-dmid='store-teaser']" )
     d11 = d10.find_element_by_css_selector( "div[data-dmid='store-teaser-info-container']" )
