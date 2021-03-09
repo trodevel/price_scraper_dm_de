@@ -49,8 +49,6 @@ def cancel_corona_add( driver ):
 
     print( "DEBUG: found add" )
 
-    helpers.sleep( 5 )
-
     print( "DEBUG: clicking" )
 
     d4.click()
@@ -66,8 +64,6 @@ def accept_banner( driver ):
     d4 = d3.find_element_by_css_selector( "button[data-dmid='cookiebar-ok']" )
 
     print( "DEBUG: found banner" )
-
-    helpers.sleep( 5 )
 
     print( "DEBUG: clicking" )
 
@@ -407,11 +403,7 @@ driver.get( 'https://www.dm.de' )
 
 cancel_corona_add( driver )
 
-helpers.sleep(5)
-
 accept_banner( driver )
-
-helpers.sleep(5)
 
 select_shop_by_post_code( driver )
 
