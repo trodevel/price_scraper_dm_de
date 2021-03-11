@@ -434,6 +434,9 @@ accept_banner( driver )
 
 select_shop_by_post_code( driver )
 
+# reopen the main page again
+driver.get( 'https://www.dm.de' )
+
 links = determine_categories( driver )
 
 num_links = len( links )
