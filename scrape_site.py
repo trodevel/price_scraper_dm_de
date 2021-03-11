@@ -168,6 +168,22 @@ def harmonize_link( link ):
 
 def determine_categories( driver ):
 
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
+    d3 = d2.find_element_by_xpath( "//div" )
+    d4 = d3.find_element_by_css_selector( "div[data-dmid='dm-modules-container']" )
+    d5 = d4.find_element_by_css_selector( "div[data-dmid='modules-container']" )
+    d6 = d5.find_element_by_id( "dauerpreis" )
+    d7 = d6.find_element_by_xpath( "//following-sibling::div[data-dmid='module-container']" )
+    d8 = d7.find_element_by_xpath( "//div" )
+    d9 = d8.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_module')]" )
+    d10 = d9.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_mask')]" )
+    d11 = d10.find_element_by_xpath( "//div" )
+    d12 = d11.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_panel')]" )
+    d13 = d12.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
+    d14 = d13.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_teaserLink_3dPyR')]" )
+
     div = driver.find_element_by_class_name( 'top-level-categories-teaser-list' )
 
     if div == None:
