@@ -444,7 +444,7 @@ driver = helpers.init_driver( config.DRIVER_PATH, config.BROWSER_BINARY )
 
 driver.get( 'https://www.dm.de' )
 
-cancel_corona_add( driver )
+#cancel_corona_add( driver )
 
 accept_banner( driver )
 
