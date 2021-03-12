@@ -183,7 +183,7 @@ def determine_categories( driver ):
     d11 = d10.find_element_by_xpath( "//div" )
     d12 = d11.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_panel')]" )
     d13 = d12.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
-    d14 = d13.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_teaserLink_3dPyR')]" )
+    d14 = d13.find_element_by_xpath( "//a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
 
     div = driver.find_element_by_class_name( 'top-level-categories-teaser-list' )
 
