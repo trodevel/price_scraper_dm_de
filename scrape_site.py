@@ -185,6 +185,8 @@ def determine_categories( driver ):
     d13 = d12.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
     d14 = d13.find_element_by_xpath( "//a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
 
+    link = d14.get_attribute( 'href' )
+
     div = driver.find_element_by_class_name( 'top-level-categories-teaser-list' )
 
     if div == None:
