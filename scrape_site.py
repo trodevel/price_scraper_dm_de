@@ -176,32 +176,16 @@ def determine_categories( driver ):
     d4 = d3.find_element_by_css_selector( "div[data-dmid='dm-modules-container']" )
     d5 = d4.find_element_by_css_selector( "div[data-dmid='modules-container']" )
     #d6 = d5.find_element_by_id( "dauerpreis" )
-    #d7 = d6.find_element_by_xpath( "//../following-sibling::div[data-dmid='module-container']" )
+    #d7 = d6.find_element_by_xpath( "./following-sibling::div" )
+    #d7 = d6.find_element_by_xpath( "./following-sibling::div[data-dmid='module-container']" )
     d7 = d5.find_element_by_xpath( "//div[10]" )
     d8 = d7.find_element_by_xpath( "//div" )
     d9 = d8.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_module')]" )
     d10 = d9.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_mask')]" )
     d11 = d10.find_element_by_xpath( "//div" )
     d12 = d11.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_panel')]" )
-    d13 = d12.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
-    d14 = d13.find_element_by_xpath( "//a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
 
-    link = d14.get_attribute( 'href' )
-
-    print( "DEBUG: link = {}".format( link ) )
-    exit()
-
-    div = driver.find_element_by_class_name( 'top-level-categories-teaser-list' )
-
-    if div == None:
-        print( "FATAL: cannot find categories" )
-        exit()
-
-    i1 = div.find_element_by_class_name( 'top-level-categories-teaser-list__container' )
-
-    i2 = i1.find_element_by_class_name( 'top-level-categories-teaser-list__items' )
-
-    elements = i2.find_elements_by_class_name( 'top-level-categories-teaser-list__item' )
+    elements = d12.find_elements_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
 
     print( "INFO: found {} categories".format( len( elements ) ) )
 
@@ -209,24 +193,33 @@ def determine_categories( driver ):
 
     for s in elements:
 
-        s2 = s.find_element_by_tag_name( "a" )
+        d13 = s.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
+        d14 = d13.find_element_by_xpath( "//a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
 
-        link = s2.get_attribute( 'href' )
+        link = d14.get_attribute( 'href' )
 
-        s3 = s2.find_element_by_class_name( 'top-level-category-teaser__content' )
-        s4 = s3.find_element_by_class_name( 'top-level-category-teaser__title' )
+        #s2 = s.find_element_by_tag_name( "a" )
 
-        name = s4.text
+        #link = s2.get_attribute( 'href' )
+
+        #s3 = s2.find_element_by_class_name( 'top-level-category-teaser__content' )
+        #s4 = s3.find_element_by_class_name( 'top-level-category-teaser__title' )
+
+        #name = s4.text
+        name = link
 
         link = harmonize_link( link )
 
         print( "DEBUG: determine_categories: {} - {}".format( link, name ) )
 
-        if link.find( "pflanzensamen" ) == -1 and DEBUG_CATEGORY == True:
-            print( "DEBUG: temporary ignoring" )
-            continue
+        #if link.find( "pflanzensamen" ) == -1 and DEBUG_CATEGORY == True:
+        #    print( "DEBUG: temporary ignoring" )
+        #    continue
 
         links[ link ] = name
+
+
+    quit()
 
     return links
 
