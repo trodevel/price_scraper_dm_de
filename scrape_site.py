@@ -187,6 +187,9 @@ def determine_categories( driver ):
 
     link = d14.get_attribute( 'href' )
 
+    print( "DEBUG: link = {}".format( link ) )
+    exit()
+
     div = driver.find_element_by_class_name( 'top-level-categories-teaser-list' )
 
     if div == None:
