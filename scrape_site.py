@@ -206,7 +206,7 @@ def determine_categories( driver ):
         #s4 = s3.find_element_by_class_name( 'top-level-category-teaser__title' )
 
         #name = s4.text
-        name = link
+        name = d14.get_attribute( 'class' )
 
         link = harmonize_link( link )
 
