@@ -186,7 +186,7 @@ def determine_categories( driver ):
 
     print( "INFO: found {} categories".format( len( elements ) ) )
 
-    links = ()
+    links = []
 
     for s in elements:
 
