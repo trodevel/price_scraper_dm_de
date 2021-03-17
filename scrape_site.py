@@ -167,11 +167,30 @@ def harmonize_link( link ):
 
 ##########################################################
 
-def parse_module_item( s ):
+def determine_categories( driver ):
 
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
+    d3 = d2.find_element_by_xpath( "div" )
+    d4 = d3.find_element_by_css_selector( "div[data-dmid='dm-modules-container']" )
+    d5 = d4.find_element_by_css_selector( "div[data-dmid='modules-container']" )
 
-        #d13 = s.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
-        d14 = s.find_element_by_xpath( "//a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
+    el2 = d5.find_elements_by_css_selector( "div[data-dmid='module-container']" )
+
+    print( "DEBUG: found {} el2".format( len( el2 ) ) )
+
+    d10 = d2.find_element_by_xpath( "/html/body/div[1]/div/div[5]/div/div/div/div[10]/div/div/div[2]/div[1]/div" )
+
+    elements = d10.find_elements_by_xpath( "div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
+
+    print( "INFO: found {} categories".format( len( elements ) ) )
+
+    #i = 1
+
+    for s in elements:
+
+        d14 = s.find_element_by_xpath( "a[starts-with(@class,'odt_TeaserGroup-module_teaserLink')]" )
 
         link = d14.get_attribute( 'href' )
 
@@ -194,57 +213,6 @@ def parse_module_item( s ):
         #    continue
 
         #links[ link ] = name
-
-
-##########################################################
-
-def parse_module_container( i, d ):
-
-    print( "DEBUG: parse_module_container: {}".format( i ) )
-
-    d8 = d.find_element_by_xpath( "//div" )
-    d9 = d8.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_module')]" )
-    print( "DEBUG: {} - {}".format( "d9", d9.get_attribute( 'class' ) ) )
-    d10 = d9.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_mask')]" )
-    print( "DEBUG: {} - {}".format( "d10", d10.get_attribute( 'class' ) ) )
-    d11 = d10.find_element_by_xpath( "//div" )
-    d12 = d11.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_panel')]" )
-    print( "DEBUG: {} - {}".format( "d12", d12.get_attribute( 'class' ) ) )
-
-    elements = d12.find_elements_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_item')]" )
-
-    print( "INFO: found {} categories".format( len( elements ) ) )
-
-    links = dict()
-
-    for s in elements:
-
-        parse_module_item( s )
-
-    quit()
-
-    return links
-
-##########################################################
-
-def determine_categories( driver ):
-
-    d0 = driver.find_element_by_id( "app" )
-    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
-    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
-    d3 = d2.find_element_by_xpath( "//div" )
-    d4 = d3.find_element_by_css_selector( "div[data-dmid='dm-modules-container']" )
-    d5 = d4.find_element_by_css_selector( "div[data-dmid='modules-container']" )
-
-    el2 = d5.find_elements_by_css_selector( "div[data-dmid='module-container']" )
-
-    print( "DEBUG: found {} el2".format( len( el2 ) ) )
-
-    i = 1
-
-    for s in el2:
-        parse_module_container( i, s )
-        i += 1
 
     quit()
 
