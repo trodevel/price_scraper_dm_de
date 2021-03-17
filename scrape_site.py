@@ -198,9 +198,9 @@ def determine_categories( driver ):
 
         print( "DEBUG: determine_categories: {}".format( link ) )
 
-        #if link.find( "pflanzensamen" ) == -1 and DEBUG_CATEGORY == True:
-        #    print( "DEBUG: temporary ignoring" )
-        #    continue
+        if link.find( "pflanzensamen" ) == -1 and DEBUG_CATEGORY == True:
+            print( "DEBUG: temporary ignoring" )
+            continue
 
         links.append( link )
 
