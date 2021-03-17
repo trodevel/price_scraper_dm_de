@@ -178,7 +178,7 @@ def determine_categories( driver ):
 
     el2 = d5.find_elements_by_css_selector( "div[data-dmid='module-container']" )
 
-    print( "DEBUG: found {} el2".format( len( el2 ) ) )
+    #print( "DEBUG: found {} el2".format( len( el2 ) ) )
 
     d10 = d2.find_element_by_xpath( "/html/body/div[1]/div/div[5]/div/div/div/div[10]/div/div/div[2]/div[1]/div" )
 
@@ -186,7 +186,7 @@ def determine_categories( driver ):
 
     print( "INFO: found {} categories".format( len( elements ) ) )
 
-    #i = 1
+    links = ()
 
     for s in elements:
 
@@ -194,29 +194,19 @@ def determine_categories( driver ):
 
         link = d14.get_attribute( 'href' )
 
-        #s2 = s.find_element_by_tag_name( "a" )
-
-        #link = s2.get_attribute( 'href' )
-
-        #s3 = s2.find_element_by_class_name( 'top-level-category-teaser__content' )
-        #s4 = s3.find_element_by_class_name( 'top-level-category-teaser__title' )
-
-        #name = s4.text
-        name = d14.get_attribute( 'class' )
-
         link = harmonize_link( link )
 
-        print( "DEBUG: determine_categories: {} - {}".format( link, name ) )
+        print( "DEBUG: determine_categories: {}".format( link ) )
 
         #if link.find( "pflanzensamen" ) == -1 and DEBUG_CATEGORY == True:
         #    print( "DEBUG: temporary ignoring" )
         #    continue
 
-        #links[ link ] = name
+        links.append( link )
 
     quit()
 
-    #return links
+    return links
 
 ##########################################################
 
