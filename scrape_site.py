@@ -386,6 +386,29 @@ def parse_subcategory( driver, f, category_handle, category_name, subcategory_li
 
 ##########################################################
 
+def determine_category_name( driver ):
+
+    d0 = driver.find_element_by_id( "app" )
+    d1 = d0.find_element_by_css_selector( "div[data-dmid='app-container']" )
+    d2 = d1.find_element_by_css_selector( "div[data-dmid='main-container']" )
+    d3 = d2.find_element_by_xpath( "div" )
+    d4 = d3.find_element_by_css_selector( "div[data-dmid='dm-modules-container']" )
+    d5 = d4.find_element_by_css_selector( "div[data-dmid='modules-container']" )
+
+    #elements = d5.find_elements_by_css_selector( "div[data-dmid='module-container']" )
+
+    d6 = d5.find_element_by_xpath( "div[@data-dmid='module-container']/div/div[@data-dmid='richtextContainer']/div[@data-dmid='richtext']/h1" )
+
+    name = d6.text
+
+#    d1 = driver.find_element_by_xpath( "/html/body/div[1]/div/div[5]/div[2]/div/div/div[2]/div/div/div/h1" )
+#                                        /html/body/div[1]/div/div[5]/div[2]/div/div/div[1]/div/div/div/h1
+#    name = d1.text
+
+    return name
+
+##########################################################
+
 def parse_category( driver, f, category_link ):
 
     category_handle = extract_handle_from_url( category_link )
@@ -394,7 +417,11 @@ def parse_category( driver, f, category_link ):
 
     helpers.wait_for_page_load( driver )
 
-    category_name = "xxx"
+    helpers.sleep(2)
+
+    category_name = determine_category_name( driver )
+
+    print( "DEBUG: category name - {}".format( category_name ) )
 
     # "ostern" page has another structure, so we'll not bother us with parsing sub-categories
     #if category_link.find( "/ostern" ) != -1:
