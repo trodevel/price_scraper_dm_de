@@ -198,7 +198,9 @@ def parse_module_item( s ):
 
 ##########################################################
 
-def parse_module_container( d ):
+def parse_module_container( i, d ):
+
+    print( "DEBUG: parse_module_container: {}".format( i ) )
 
     d8 = d.find_element_by_xpath( "//div" )
     d9 = d8.find_element_by_xpath( "//div[starts-with(@class,'odt_TeaserGroup-module_module')]" )
@@ -219,6 +221,8 @@ def parse_module_container( d ):
 
         parse_module_item( s )
 
+    quit()
+
     return links
 
 ##########################################################
@@ -236,8 +240,11 @@ def determine_categories( driver ):
 
     print( "DEBUG: found {} el2".format( len( el2 ) ) )
 
+    i = 1
+
     for s in el2:
-        parse_module_container( s )
+        parse_module_container( i, s )
+        i += 1
 
     quit()
 
