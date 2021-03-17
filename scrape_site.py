@@ -204,8 +204,6 @@ def determine_categories( driver ):
 
         links.append( link )
 
-    quit()
-
     return links
 
 ##########################################################
@@ -388,7 +386,7 @@ def parse_subcategory( driver, f, category_handle, category_name, subcategory_li
 
 ##########################################################
 
-def parse_category( driver, f, category_link, category_name ):
+def parse_category( driver, f, category_link ):
 
     category_handle = extract_handle_from_url( category_link )
 
@@ -396,10 +394,14 @@ def parse_category( driver, f, category_link, category_name ):
 
     helpers.wait_for_page_load( driver )
 
+    category_name = "xxx"
+
     # "ostern" page has another structure, so we'll not bother us with parsing sub-categories
-    if category_link.find( "/ostern" ) != -1:
-        parse_page( driver, f, category_handle, category_name, category_handle, category_name )
-        return
+    #if category_link.find( "/ostern" ) != -1:
+    #    parse_page( driver, f, category_handle, category_name, category_handle, category_name )
+    #    return
+
+    return
 
     links = determine_subcategories( driver )
 
@@ -446,12 +448,12 @@ f = open( generate_filename(), "w" )
 
 i = 0
 
-for c, name in links.items():
+for c in links:
 
     i += 1
 
-    print( "INFO: parsing category {} / {} - {}".format( i, num_links, name ) )
+    print( "INFO: parsing category {} / {} - {}".format( i, num_links, c ) )
 
-    parse_category( driver, f, c, helpers.to_csv_conform_string( name ) )
+    parse_category( driver, f, c )
 
 print( "INFO: done" )
